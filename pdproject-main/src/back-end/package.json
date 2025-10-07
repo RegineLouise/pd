@@ -1,0 +1,14 @@
+{
+  "name": "project-design-backend",
+  "version": "1.0.0",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.19.0",
+    "multer": "^2.0.2"
+  }
+}
