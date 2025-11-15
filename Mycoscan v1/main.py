@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from network_config import config
 
 # DB
-from extensions import db
+from extensions import db, migrate
 
 # Models (so db.create_all() can see them)
 import models  # noqa: F401
@@ -77,6 +77,12 @@ def create_app() -> Flask:
 
     # ---------- DB ----------
     db.init_app(app)
+    # Initialize Flask-Migrate so `flask db` commands work
+    try:
+        migrate.init_app(app, db)
+    except Exception:
+        # If flask-migrate is not available or init fails, continue without breaking the app
+        pass
 
     # ---------- Jinja templates (in-memory) ----------
     # Merge all TEMPLATES dicts from page modules
